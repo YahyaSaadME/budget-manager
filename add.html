@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Amount</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <div class="modal-add-out">
+        <div class="modal-add-in">
+          <center>
+            <h2 style="margin-bottom: 10px">Add Amount</h2>
+          </center>
+          <div class="bad-alert" id="bad-alert">
+            Please fill any one field!
+            <svg
+              onclick="alertClose()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-circle"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+              />
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+              />
+            </svg>
+          </div>
+          <h3 class="modal-add-heads">Enter Total Amount Cash</h3>
+          <input id="cash" class="modal-inputs" type="number" placeholder="Ex. ₹ 1000 /-" />
+          <h3 class="modal-add-heads">Enter Total Amount Gpay</h3>
+          <input id="gpay" class="modal-inputs" type="number" placeholder="Ex. ₹ 1000 /-" />
+        
+          <button class="btn" onclick="addAmount()">Add</button>
+        
+        </div>
+      </div>
+      <script>
+        const addAmount = ()=>{
+            const cash = document.getElementById("cash").value
+            const gpay = document.getElementById("gpay").value
+            if(cash!=="" || gpay !== ""){
+                localStorage.setItem('myWallet',JSON.stringify({cash:Number(cash),gpay:Number(gpay),spent : 0}))
+                location.replace('./index.html')
+            }else{
+                document.getElementById("bad-alert").style.display = "flex"
+            }
+        }
+      </script>
+</body>
+</html>
