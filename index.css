@@ -58,8 +58,8 @@
 }
 .good-alert {
   background-color: rgb(0, 0, 0);
-  color: rgb(0, 87, 0);
-  border: 1px solid green;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
   box-shadow: 0px 0px 2px -1px black;
   padding: 5px;
   margin-top: 10px;
@@ -70,8 +70,8 @@
 }
 .bad-alert {
   background-color: rgb(0, 0, 0);
-  color: rgb(87, 0, 0);
-  border: 1px solid rgb(128, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 254, 254);
   padding: 5px;
   box-shadow: 0px 0px 2px -1px black;
   margin-top: 10px;
@@ -98,10 +98,10 @@
 }
 .type {
   font-size: 8px;
-  background-color: green;
+  background-color: rgb(255, 255, 255);
   width: fit-content;
   padding: 2px 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-weight: 500;
   margin-top: 3px;
 }
