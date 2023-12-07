@@ -12,8 +12,7 @@ const allLogs = async () => {
       document.getElementById("spent").innerHTML = Amount.spent;
       document.getElementById("savings").innerHTML = Amount.gpay + Amount.cash;
     }
-
-    if (data != null || data.length != 0) {
+    if (data != null) {
       document.getElementById("no").style.display = "none";
       document.getElementById("logs").innerHTML = "";
       data.map((e, i) => {
@@ -29,19 +28,19 @@ const allLogs = async () => {
             <h2 class="time">${date.getDate()} | ${date.getMonth()} | ${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}</h2>
           </div>
         </div>
-        <h2 class="amount">${e.amount}</h2>
+        <h2 class="amount">₹ ${e.amount}</h2>
       </div>
           `;
       });
     } else {
       document.getElementById("no").style.display = "flex";
-      document.getElementById("no").style.display = "none";
     }
   } catch (error) {
     console.log(error);
   }
 };
 allLogs();
+console.log(document.getElementById("type").value);
 const reset = () => {
   localStorage.removeItem('logs')
   localStorage.removeItem('myWallet')
@@ -49,11 +48,16 @@ const reset = () => {
 };
 const addLogs = async () => {
   const why = document.getElementById("why").value;
-  const Gpay = document.getElementById("Gpay").value;
-  const Cash = document.getElementById("Cash").value;
-  document.getElementById("good-alert").style.display = "none";
-  document.getElementById("bad-alert").style.display = "none";
-  try {
+  const Amount = document.getElementById("input-amount").value;
+  const type = document.getElementById("type").value;
+
+  if(Amount==0 || Amount =="" || why==""){
+    document.getElementById("bad-alert").style.display = "flex";
+    
+  }else{
+    
+    try {
+    document.getElementById("good-alert").style.display = "flex";
     let prev = JSON.parse(localStorage.getItem("logs"));
     let prevAmount = JSON.parse(localStorage.getItem("myWallet"));
     if (!prev) {
@@ -71,26 +75,39 @@ const addLogs = async () => {
       JSON.stringify([
         {
           why: why,
-          amount: Cash !== "" ? Cash : Gpay,
-          type: Cash !== "" ? "Cash" : "Gpay",
+          amount:Amount,
+          type: type == "Cash" ? "Cash" : "Gpay",
           when: new Date(),
         },
         ...prev,
       ])
     );
-    localStorage.setItem(
-      "myWallet",
-      JSON.stringify({
-        cash: prevAmount.cash - Number(Cash),
-        gpay: prevAmount.gpay - Number(Gpay),
-        spent: Number(prevAmount.spent) + Number(Gpay) + Number(Cash),
-      })
-    );
+    if(type == "Cash"){
+      localStorage.setItem(
+        "myWallet",
+        JSON.stringify({
+          cash: prevAmount.cash - Number(Amount),
+          gpay: prevAmount.gpay,
+          spent: Number(prevAmount.spent) + Number(Amount),
+        })
+      );
+    }else{
+      localStorage.setItem(
+        "myWallet",
+        JSON.stringify({
+          gpay: prevAmount.gpay - Number(Amount),
+          cash: prevAmount.cash,
+          spent: Number(prevAmount.spent) + Number(Amount),
+        })
+      );
+    }
     allLogs();
   } catch (error) {
+    document.getElementById("good-alert").style.display = "none";
     document.getElementById("bad-alert").style.display = "flex";
     console.log(error);
   }
+}
 };
 
 const alertClose = () => {

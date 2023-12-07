@@ -5,6 +5,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
+  color: white;
 }
 
 .hover:hover,
@@ -21,8 +23,8 @@
 }
 
 .btn {
-  background-color: black;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   padding: 5px 10px 7px 10px;
   margin-top: 10px;
   border: none;
@@ -43,18 +45,19 @@
   display: flex;
 }
 .com-inputs {
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   padding: 10px;
   margin-top: 2px;
   width: 100%;
   margin: 2px;
   outline: none;
+  color: white;
 }
 .no {
   font-size: 12px;
 }
 .good-alert {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   color: rgb(0, 87, 0);
   border: 1px solid green;
   box-shadow: 0px 0px 2px -1px black;
@@ -66,7 +69,7 @@
   display: none;
 }
 .bad-alert {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   color: rgb(87, 0, 0);
   border: 1px solid rgb(128, 0, 0);
   padding: 5px;
@@ -90,7 +93,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   margin-bottom: 10px;
 }
 .type {
@@ -123,7 +126,7 @@
 }
 
 .modal-add-in {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   width: min-content;
   padding: 20px 20px 20px 20px;
   border-radius: 5px;
