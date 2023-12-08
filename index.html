@@ -14,13 +14,50 @@
           class="btn"
           onclick="reset()"
           style="font-size: 10px; width: min-content; text-decoration: none"
-          >Reset</button
         >
+          Reset
+        </button>
       </div>
-      <div style="display: flex;justify-content: space-between;">
-        <h2 style="font-size: 14px;margin-top: 20px;">Online: ₹ <span id="gpay"></span>  <br>Cash: ₹ <span id="cash"></span> </h2>
-        <h2 style="font-size: 14px;margin-top: 20px;">Savings: ₹ <span id="savings"></span>  <br>Spent: ₹ <span id="spent"></span> </h2>
+      <div class="sec">
+        <div class="sec-in">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-phone-fill"
+            viewBox="0 0 16 16"
+            dis
+          >
+            <path
+              d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0"
+            />
+          </svg>
+          <h2 class="sec-txt">₹ <span id="gpay"></span></h2>
+        </div>
+        <div class="sec-in">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2z"/>
+            <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5z"/>
+          </svg>
+          <h2 class="sec-txt">₹ <span id="cash"></span></h2>
+        </div>
+        <div class="sec-in">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank2" viewBox="0 0 16 16">
+            <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zm-2.5 0v7h-1.25V6zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2M.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1z"/>
+          </svg>
+          <h2 class="sec-txt">
+            ₹ <span id="savings"></span> 
+          </h2>
+        </div>
+        <div class="sec-in">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+            <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0"/>
+          </svg>
+          <h2 class="sec-txt">₹ <span id="spent"></span></h2>
+        </div>
       </div>
+      
       <div class="main-inputs">
         <input
           class="com-inputs"
@@ -39,20 +76,81 @@
           <option value="Cash">Cash</option>
         </select>
       </div>
-      <div
-        style="
-          display: flex;
-          width: 100%;
-          justify-content: end;
-          align-items: end;
-        "
-      >
-        <button class="btn" onclick="addLogs()">Add</button>
+
+      <div class="shortcut" id="reason-shortcut">
+        <div class="shortcut-in">
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="WSC('Snacks')">Snacks</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="WSC('Lunch')">Lunch</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="WSC('Dinner')">Dinner</h5>
+          </div>
+
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="WSC('Train Tickets')">
+              Train Tickets
+            </h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="WSC('Paid Fees')">Paid Fees</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt">+</h5>
+          </div>
+        </div>
       </div>
+      <div class="shortcut" id="amount-shortcut">
+        <div class="shortcut-in">
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(10)">₹10</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(20)">₹20</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(30)">₹30</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(50)">₹50</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(80)">₹80</h5>
+          </div>
+          <div class="shortcuts">
+            <h5 class="shortcut-txt" onclick="ASC(100)">₹100</h5>
+          </div>
+
+          <div class="shortcuts">
+            <h5 class="shortcut-txt">+</h5>
+          </div>
+        </div>
+      </div>
+      <div class="shortcut-in-2">
+        <button class="btn" style="margin: 3px" onclick="addReceivedLogs()">
+          +
+        </button>
+        <button class="btn" style="margin: 3px" onclick="addSpentLogs()">
+          Spent
+        </button>
+      </div>
+
       <div class="good-alert" id="good-alert">
-        <div style="display: flex;align-items: center;">
-          <svg style="margin-right: 20px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        <div style="display: flex; align-items: center">
+          <svg
+            style="margin-right: 20px"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-check-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+            />
           </svg>
           Data Added successfully
         </div>
@@ -74,9 +172,19 @@
         </svg>
       </div>
       <div class="bad-alert" id="bad-alert">
-        <div style="display: flex;align-items: center;">
-          <svg style="margin-right: 20px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">
-            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        <div style="display: flex; align-items: center">
+          <svg
+            style="margin-right: 20px"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-exclamation-diamond-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+            />
           </svg>
           Data Not Added
         </div>
@@ -98,9 +206,19 @@
         </svg>
       </div>
       <div class="Amount-exceed-alert" id="Amount-exceed-alert">
-        <div style="display: flex;align-items: center;">
-          <svg style="margin-right: 20px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill" viewBox="0 0 16 16">
-            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        <div style="display: flex; align-items: center">
+          <svg
+            style="margin-right: 20px"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-exclamation-diamond-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+            />
           </svg>
           Please check your wallet
         </div>
