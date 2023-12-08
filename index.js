@@ -20,7 +20,7 @@ const allLogs = async () => {
         return dataArray.reduce((result, currentObj) => {
           console.log(currentObj.when);
           let date = new Date(currentObj.when)
-          date = new Date(`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`);
+          date = new Date(`${date.getMonth()+1} ${date.getDate()} ${date.getFullYear()}`);
           if (!result[date]) {
             result[date] = [];
           }
@@ -34,8 +34,13 @@ const allLogs = async () => {
       splitData.map((data, i) => {
         console.log(data);
         const date = new Date(data.date);
-        // document.getElementById("logs").innerHTML += `${date.getDate()} | ${date.getMonth()+1} | ${date.getFullYear()} `
-        document.getElementById("logs").innerHTML += `<div class='center-date-div'><h2 class='center-date'>${date.getDate()} | ${date.getMonth()+1} | ${date.getFullYear()} </h2></div>`
+        const currentDate = new Date()
+        console.log(currentDate.toDateString()==date.toDateString());
+        if(date.toDateString() == currentDate.toDateString()){
+          document.getElementById("logs").innerHTML += `<div class='center-date-div'><h2 class='center-date'>Today</h2></div>`
+        }else{
+          document.getElementById("logs").innerHTML += `<div class='center-date-div'><h2 class='center-date'>${date.getDate()} | ${date.getMonth()+1} | ${date.getFullYear()} </h2></div>`
+        }
         data.data.map((e,i)=>{
           const when = new Date(e.when)
           document.getElementById("logs").innerHTML += `
