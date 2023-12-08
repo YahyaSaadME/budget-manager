@@ -15,22 +15,44 @@ const allLogs = async () => {
     if (data != null) {
       document.getElementById("no").style.display = "none";
       document.getElementById("logs").innerHTML = "";
-      data.map((e, i) => {
-        const date = new Date(e.when);
-        document.getElementById("logs").innerHTML += `
-          <div class="log">
-        <div>
-          <h2 class="why">
-            ${e.why}
-          </h2>
-          <div style="display: flex; align-items: center">
-            <h2 class="type">${e.type}</h2>
-            <h2 class="time">${date.getDate()} | ${date.getMonth()} | ${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}</h2>
+      
+      function splitArrayByDate(dataArray) {
+        return dataArray.reduce((result, currentObj) => {
+          console.log(currentObj.when);
+          let date = new Date(currentObj.when)
+          date = new Date(`${date.getMonth()} ${date.getDate()} ${date.getFullYear()}`);
+          if (!result[date]) {
+            result[date] = [];
+          }
+          result[date].push({why:currentObj.why,type:currentObj.type,amount:currentObj.amount,when:currentObj.when});
+          return result;
+        }, {});
+      }
+
+      const splitData= Object.entries(splitArrayByDate(data)).map(([date, data]) => ({ date, data }))
+
+      splitData.map((data, i) => {
+        console.log(data);
+        const date = new Date(data.date);
+        // document.getElementById("logs").innerHTML += `${date.getDate()} | ${date.getMonth()+1} | ${date.getFullYear()} `
+        document.getElementById("logs").innerHTML += `<div class='center-date-div'><h2 class='center-date'>${date.getDate()} | ${date.getMonth()+1} | ${date.getFullYear()} </h2></div>`
+        data.data.map((e,i)=>{
+          const when = new Date(e.when)
+          document.getElementById("logs").innerHTML += `
+            <div class="log">
+          <div>
+            <h2 class="why">
+              ${e.why}
+            </h2>
+            <div style="display: flex; align-items: center">
+              <h2 class="type">${e.type}</h2>
+              <h2 class="time">${when.getHours()}:${when.getMinutes()}:${when.getSeconds()}</h2>
+            </div>
           </div>
+          <h2 class="amount">₹ ${e.amount}</h2>
         </div>
-        <h2 class="amount">₹ ${e.amount}</h2>
-      </div>
-          `;
+            `;
+        })
       });
     } else {
       document.getElementById("no").style.display = "flex";
@@ -41,27 +63,25 @@ const allLogs = async () => {
 };
 allLogs();
 const reset = () => {
-  localStorage.removeItem('logs')
-  localStorage.removeItem('myWallet')
-  location.replace('./add.html')
+  localStorage.removeItem("logs");
+  localStorage.removeItem("myWallet");
+  location.replace("./add.html");
 };
-
 
 const addLogs = async () => {
   const why = document.getElementById("why").value;
   const Amount = document.getElementById("input-amount").value;
   const type = document.getElementById("type").value;
-  const data = JSON.parse(localStorage.getItem('myWallet'))
+  const data = JSON.parse(localStorage.getItem("myWallet"));
 
-  if(Amount==0 || Amount =="" || why==""){
+  if (Amount == 0 || Amount == "" || why == "") {
     document.getElementById("bad-alert").style.display = "flex";
-    
-  }else{
-    if(type == "Cash" && Number(Amount)>data.cash){
-        document.getElementById("Amount-exceed-alert").style.display = "flex"
-    }else if(type == "Gpay" && Number(Amount)>data.gpay){
-      document.getElementById("Amount-exceed-alert").style.display = "flex"
-    }else{
+  } else {
+    if (type == "Cash" && Number(Amount) > data.cash) {
+      document.getElementById("Amount-exceed-alert").style.display = "flex";
+    } else if (type == "Gpay" && Number(Amount) > data.gpay) {
+      document.getElementById("Amount-exceed-alert").style.display = "flex";
+    } else {
       try {
         document.getElementById("good-alert").style.display = "flex";
         let prev = JSON.parse(localStorage.getItem("logs"));
@@ -76,19 +96,20 @@ const addLogs = async () => {
           );
           prevAmount = JSON.parse(localStorage.getItem("myWallet"));
         }
+        console.log(prev.when);
         const add = localStorage.setItem(
           "logs",
           JSON.stringify([
             {
               why: why,
-              amount:Amount,
+              amount: Amount,
               type: type == "Cash" ? "Cash" : "Gpay",
               when: new Date(),
             },
             ...prev,
           ])
         );
-        if(type == "Cash"){
+        if (type == "Cash") {
           localStorage.setItem(
             "myWallet",
             JSON.stringify({
@@ -97,7 +118,7 @@ const addLogs = async () => {
               spent: Number(prevAmount.spent) + Number(Amount),
             })
           );
-        }else{
+        } else {
           localStorage.setItem(
             "myWallet",
             JSON.stringify({
@@ -114,11 +135,8 @@ const addLogs = async () => {
         console.log(error);
       }
     }
-
-}
+  }
 };
-
-
 
 const alertClose = () => {
   document.getElementById("good-alert").style.display = "none";

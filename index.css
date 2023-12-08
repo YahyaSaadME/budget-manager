@@ -156,3 +156,18 @@
   margin-top: 5px;
   outline: none;
 }
+.center-date{
+  font-size: 10px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  width: fit-content;
+  padding: 2px 8px 3px 8px;
+
+}
+.center-date-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
